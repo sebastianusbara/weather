@@ -14,6 +14,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
+    "fs": "^0.0.1-security",
     "jest-styled-components": "^7.0.5",
     "kelvin-to-fahrenheit": "^1.1.0",
     "moment": "^2.29.1",
