@@ -4,7 +4,7 @@ import axios from 'axios';
 import moment from 'moment';
 import mainConfig from '../config';
 import {
-    MainTitle, CurrentDateTitle, Main, Container, Grid
+    MainTitle, CurrentDateTitle, Main, Container, Grid, CityWrapper
 } from './index.style';
 import WeatherCard from '../components/weatherCard/weatherCard.component';
 import CitySwitch from '../components/citySwitch/citySwitch.component';
@@ -93,7 +93,7 @@ class Home extends Component {
         const { data, city, current, countDown } = this.state;
         const self = this;
         const currentDate = moment(current.dt * 1000).format("MMM Do YY, h:mm a");
-        if (countDown === 0) this.requestWeatherData();
+        if (countDown === 0) this.setState({ data: [] }, this.requestWeatherData);
 
         return (
             <Container>
@@ -101,7 +101,7 @@ class Home extends Component {
                 <Main>
                     <MainTitle>5 Day Weather Forecast.</MainTitle>
                     <CurrentDateTitle>{currentDate} / {city}, Indonesia</CurrentDateTitle>
-                    <div>
+                    <CityWrapper>
                         {GEOLOCATION.map((item, i) => (
                             <CitySwitch
                                 key={i}
@@ -111,7 +111,7 @@ class Home extends Component {
                                 selectedCity={city}
                             />))
                         }
-                    </div>
+                    </CityWrapper>
                     {this.renderContent(data, this)}
                     <CountDown second={countDown}/>
                 </Main>

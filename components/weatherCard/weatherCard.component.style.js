@@ -3,18 +3,24 @@ import styled from 'styled-components';
 export const Card = styled.div.attrs(props => ({
     color: props.color
 }))`
+    position: relative;
     margin: 1rem;
     padding: 1.5rem;
-    text-align: center;
+    text-align: left;
     color: white;
     background-color: ${props => (props.color)};
     text-decoration: none;
     border: 1px solid #eaeaea;
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
-    width: 200px;
+    width: 280px;
     &:hover {
       cursor: pointer;
+    }
+
+    @media only screen and (min-width: 768px) {
+      width: 200px;
+      text-align: center;
     }
 `;
 
@@ -57,6 +63,18 @@ export const Temp = styled.div`
 
 export const Indicator = styled.div`
   margin-top: 7px;
+`;
+
+export const IconWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+
+  @media only screen and (min-width: 768px) {
+    position: relative;
+    padding: 3px;
+  }
 `;
 
 export const Humidity = styled.span`

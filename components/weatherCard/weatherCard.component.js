@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Card, Day, Date, Min, Max, Desc, Hour, Temp, Indicator, Humidity, Wind
+    Card, Day, Date, Min, Max, Desc, Hour, Temp, Indicator, Humidity, Wind, IconWrapper
 } from './weatherCard.component.style';
 import Link from 'next/link';
 import kelvinToFahrenheit from 'kelvin-to-fahrenheit';
@@ -22,7 +22,7 @@ const geticonImage = (icon) => {
     if (icon === 'Rain') iconImage = faCloudRain;
     if (icon === 'Clear') iconImage = faSun;
     if (icon === 'Clouds') iconImage = faCloudSun;
-    return <FontAwesomeIcon icon={iconImage} size={'5x'} />;
+    return <IconWrapper><FontAwesomeIcon icon={iconImage} size={'5x'} /></IconWrapper>;
 };
 
 const getCardStyle = (icon) => {

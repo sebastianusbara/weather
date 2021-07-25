@@ -4,11 +4,15 @@ export const StyledCarousel = styled.div.attrs(props => ({
     leftGutter: props.leftGutter,
     scrollPosition: props.scrollPosition * 240
 }))`
-  position: relative;
-  display: flex;
-  left: ${props => (props.leftGutter - props.scrollPosition) + 'px'};
+  display: block;
   transition: 1s;
   z-index: 0;
+
+  @media only screen and (min-width: 768px) {
+    position: relative;
+    display: flex;
+    left: ${props => (props.leftGutter - props.scrollPosition) + 'px'};
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -22,6 +26,11 @@ export const Wrapper = styled.div`
     content: "";
     background: white;
     z-index: 1;
+    display: none;
+
+    @media only screen and (min-width: 768px) {
+      display: block;
+    }
   };
   &:after {
     position: fixed;
@@ -32,13 +41,18 @@ export const Wrapper = styled.div`
     content: "";
     background: white;
     z-index: 0;
+    display: none;
+
+    @media only screen and (min-width: 768px) {
+      display: block;
+    }
   }
 `;
 
 export const ArrowLeft = styled.button.attrs(props => ({
     isShow: props.isShow
 }))`
-  display: ${props => props.isShow ? 'block' : 'none'};
+  display: none;
   font-size: 42px;
   position: fixed;
   left: 12px;
@@ -53,12 +67,16 @@ export const ArrowLeft = styled.button.attrs(props => ({
   &:hover {
     cursor: pointer;
   }
+
+  @media only screen and (min-width: 768px) {
+    display: ${props => props.isShow ? 'block' : 'none'};
+  }
 `;
 
 export const ArrowRight = styled.button.attrs(props => ({
     isShow: props.isShow
 }))`
-  display: ${props => props.isShow ? 'block' : 'none'};
+  display: none;
   font-size: 42px;
   position: fixed;
   right: 12px;
@@ -72,5 +90,9 @@ export const ArrowRight = styled.button.attrs(props => ({
   color: #8395a7;
   &:hover {
     cursor: pointer;
+  }
+
+  @media only screen and (min-width: 768px) {
+    display: ${props => props.isShow ? 'block' : 'none'};
   }
 `;

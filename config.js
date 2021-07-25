@@ -8,11 +8,6 @@ const mainConfig = {
             LONG: '106.816666'
         },
         {
-            CITY: 'Bandung',
-            LAT: '-6.932694',
-            LONG: '107.627449'
-        },
-        {
             CITY: 'Yogyakarta',
             LAT: '-7.797068',
             LONG: '110.370529'

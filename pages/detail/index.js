@@ -6,9 +6,10 @@ import { withRouter } from "next/router";
 import Carousel from '../../components/carousel/carousel.component';
 import WeatherCard from '../../components/weatherCard/weatherCard.component';
 import CountDown from '../../components/countDown/countDown.component';
-import { Main, MainTitle, Container, CurrentDateTitle } from '../index.style';
+import { Main, MainTitle, Container, CurrentDateTitle, NavigateButton } from '../index.style';
 import mainConfig from '../../config';
 import LoadingState from '../../components/loadingState/loadingState.component';
+import Link from 'next/link';
 const { GEOLOCATION, WEATHER_API, API_KEY } = mainConfig;
 
 class Detail extends Component {
@@ -40,7 +41,6 @@ class Detail extends Component {
             .get(`${WEATHER_API}?lat=${lat}&lon=${long}&appid=${API_KEY}`)
             .then(function (response) {
                 const { hourly, timezone, current } = response.data;
-                const { dt } = response.data.current;
                 const data = hourly.splice(0, 24);
                 self.setState({ data, timezone, current });
             });
@@ -60,13 +60,18 @@ class Detail extends Component {
         const { data, current, countDown } = this.state;
         const { router: { query : { day, city }}} = this.props;
         const currentDate = moment(current.dt * 1000).format("MMM Do YY, h:mm a");
-        if (countDown === 0) this.requestWeatherData();
+        if (countDown === 0) this.setState({ data: [] }, this.requestWeatherData);
 
         return (
             <Container>
                 {this.renderHeaderTitle()}
                 <Main>
                     <MainTitle>{day && day.toUpperCase()}</MainTitle>
+                    <Link href={'/'} passHref>
+                        <NavigateButton>
+                            See Daily Forecast
+                        </NavigateButton>
+                    </Link>
                     <CurrentDateTitle>
                         {currentDate} / {city}, Indonesia
                     </CurrentDateTitle>
